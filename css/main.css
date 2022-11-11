@@ -1,0 +1,355 @@
+:root{
+    --hexagon-width: 250px;
+    --hexagon-height: 300px;
+    --hexagon-border-size: 5px;
+    --hexagon-circle-size: 30px;
+    --pie-chart-size: 150px;
+    --bar-chart-size: 150px;
+}
+
+body{
+    background-color: rgb(216, 216, 216);
+}
+
+.loaderContainer{
+    min-height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hexagonLoader{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hexagonLoader .circle{
+    width: var(--hexagon-circle-size);
+    height: var(--hexagon-circle-size);
+    position: absolute;
+    z-index: 1;
+    border: 2px solid #ADB5C6;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.hexagonLoader .circle::after{
+    width: calc(var(--hexagon-circle-size) - 10px);
+    height: calc(var(--hexagon-circle-size) - 10px);
+    background-color: #F7D663;
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    border-radius: 50%;
+    animation: blink;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    33.3% {
+        opacity: 1;
+    }
+    67% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.hexagonLoader .circle.five::after{
+    animation-delay: 0.5s;
+}
+
+.hexagonLoader .circle.six::after{
+    animation-delay: 1s;
+}
+
+.hexagonLoader .circle.two::after{
+    animation-delay: 1.5s;
+}
+
+.hexagonLoader .circle.three::after{
+    animation-delay: 2s;
+}
+
+.hexagonLoader .circle.four::after{
+    animation-delay: 2.5s;
+}
+
+.hexagonLoader .circle.one{
+    top: -160px;
+}
+
+.hexagonLoader .circle.two{
+    bottom: -160px;
+}
+
+.hexagonLoader .circle.three{
+    bottom: -90px;
+    left: -140px;
+}
+
+.hexagonLoader .circle.four{
+    top: -90px;
+    left: -140px;
+}
+
+.hexagonLoader .circle.five{
+    top: -90px;
+    right: -140px;
+}
+
+.hexagonLoader .circle.six{
+    bottom: -90px;
+    right: -140px;
+}
+
+.hexaContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    margin:auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.hexagonLoader .outer{
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    height: var(--hexagon-height);
+    width: var(--hexagon-width);
+    position: absolute;
+    background-color: #ADB5C6;
+}
+
+
+.hexagonLoader .inner{
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    height: calc(var(--hexagon-height) - var(--hexagon-border-size));
+    width: calc(var(--hexagon-width) - var(--hexagon-border-size));
+    position: absolute;
+    background-color: white;
+}
+
+.pieChartContainer{
+    width: var(--pie-chart-size);
+    height: var(--pie-chart-size);
+    border-radius: 50%;
+    position: absolute;
+    background: conic-gradient(
+        pink 70deg, 
+        lightblue 0 235deg, 
+        orange 0);
+    
+    animation: infiniteRotate 2s linear infinite;
+    z-index: 1;
+}
+
+.pieChart{
+    width: var(--pie-chart-size);
+    height: var(--pie-chart-size);
+    border-radius: 50%;
+    position: absolute;
+    animation: opacityAniRev 15s linear infinite;
+}
+
+.innerPieChart{
+    width: calc(var(--pie-chart-size) - 50px);
+    height: calc(var(--pie-chart-size) - 50px);
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+@keyframes infiniteRotate {
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+}
+
+.barChart{
+    width: var(--bar-chart-size);
+    height: var(--bar-chart-size);
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    animation: opacityAni 15s linear infinite;
+    animation-delay: 15s;
+    opacity: 0;
+}
+
+.barChart div{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.barChart .bar{
+    width: calc((var(--bar-chart-size) / 6) - 5px);
+}
+
+.barChart .bar.one{
+    height: calc(var(--bar-chart-size) - 50px);
+    background-color: pink;
+    animation: barOne 1s linear infinite;
+}
+
+.barChart .bar.two{
+    height: calc(var(--bar-chart-size) - 70px);
+    background-color: lightblue;
+    animation: barTwo 1.1s linear infinite;
+}
+
+.barChart .bar.three{
+    height: calc(var(--bar-chart-size) - 60px);
+    background-color: orange;
+    animation: barThree 1.3s linear infinite;
+}
+
+.barChart .bar.four{
+    height: calc(var(--bar-chart-size) - 90px);
+    background-color: pink;
+    animation: barFour 1.2s linear infinite;
+}
+
+.barChart .bar.five{
+    height: calc(var(--bar-chart-size) - 10px);
+    background-color: lightblue;
+    animation: barFive 1.5s linear infinite;
+}
+
+.barChart .bar.six{
+    height: calc(var(--bar-chart-size) - 100px);
+    background-color: orange;
+    animation: barSix 1.8s linear infinite;
+}
+
+@keyframes barOne {
+    0% {
+        height: calc(var(--bar-chart-size) - 50px);
+    }
+    50%{
+        height: calc(var(--bar-chart-size) - 10px);
+    }
+    100% {
+        height: calc(var(--bar-chart-size) - 50px);
+    }
+}
+
+@keyframes barTwo {
+    0% {
+        height: calc(var(--bar-chart-size) - 70px);
+    }
+    50%{
+        height: calc(var(--bar-chart-size) - 20px);
+    }
+    100% {
+        height: calc(var(--bar-chart-size) - 70px);
+    }
+}
+
+@keyframes barThree {
+    0% {
+        height: calc(var(--bar-chart-size) - 60px);
+    }
+    50%{
+        height: calc(var(--bar-chart-size));
+    }
+    100% {
+        height: calc(var(--bar-chart-size) - 60px);
+    }
+}
+
+@keyframes barFour {
+    0% {
+        height: calc(var(--bar-chart-size) - 90px);
+    }
+    50%{
+        height: calc(var(--bar-chart-size) - 40px);
+    }
+    100% {
+        height: calc(var(--bar-chart-size) - 90px);
+    }
+}
+
+@keyframes barFive {
+    0% {
+        height: calc(var(--bar-chart-size) - 10px);
+    }
+    50%{
+        height: calc(var(--bar-chart-size) - 70px);
+    }
+    100% {
+        height: calc(var(--bar-chart-size) - 10px);
+    }
+}
+
+@keyframes barSix {
+    0% {
+        height: calc(var(--bar-chart-size) - 100px);
+    }
+    50%{
+        height: calc(var(--bar-chart-size) - 50px);
+    }
+    100% {
+        height: calc(var(--bar-chart-size) - 100px);
+    }
+}
+
+@keyframes opacityAni {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes opacityAniRev {
+    0% {
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
